@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="saver" class="scheme-light performance:scheme-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laptops · Student Laptop Finder</title>
+  <meta name="description" content="Search, filter and sort student laptops.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="dist/output.css">
+  <script src="src/js/theme-boot.js"></script>
+</head>
+<body class="flex min-h-screen flex-col bg-page font-sans text-ink antialiased transition-colors duration-300">
+  <a href="#main" class="btn-action sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50">Skip to content</a>
+
+  <header class="sticky top-0 z-40 border-b border-line bg-page/90 backdrop-blur">
+    <div class="relative mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
+      <a href="index.html" class="mr-auto flex items-center gap-2 rounded-md text-lg font-bold tracking-tight focus-visible:outline-3 focus-visible:outline-accent-text">
+        <span class="grid size-9 place-items-center rounded-lg bg-accent text-accent-ink">
+          <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current stroke-2" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path stroke-linecap="round" d="M2 19h20"/></svg>
+        </span>
+        <span>Laptop<span class="text-accent-text">Finder</span></span>
+      </a>
+
+      <nav id="site-nav" aria-label="Main" class="absolute inset-x-0 top-full hidden flex-col gap-1 border-b border-line bg-page p-4 md:static md:flex md:flex-row md:border-0 md:bg-transparent md:p-0">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="laptops.html" aria-current="page">Laptops</a>
+        <a class="nav-link" href="favorites.html">Favorites <span data-fav-count class="ml-1 rounded-full bg-heart px-1.5 py-0.5 font-mono text-xs text-page">0</span></a>
+        <a class="nav-link" href="compare.html">Compare</a>
+      </nav>
+
+      <button id="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Performance Mode"
+        class="group inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface p-1 text-sm font-bold transition duration-200 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text lg:pr-3">
+        <span class="relative h-7 w-12 rounded-full bg-raised">
+          <span class="absolute top-1 left-1 grid size-5 place-items-center rounded-full bg-accent-text text-page transition-transform duration-300 group-aria-checked:translate-x-5 motion-reduce:transition-none">
+            <svg viewBox="0 0 24 24" class="size-3.5 fill-current group-aria-checked:hidden" aria-hidden="true"><path d="M17 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-3 15h-4v-2h4Zm0-4h-4v-2h4Z"/></svg>
+            <svg viewBox="0 0 24 24" class="hidden size-3.5 fill-current group-aria-checked:block" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg>
+          </span>
+        </span>
+        <span id="theme-label" class="hidden whitespace-nowrap lg:inline">Battery Saver</span>
+      </button>
+
+      <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"
+        class="grid size-10 place-items-center rounded-full border-2 border-line bg-surface transition hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text md:hidden">
+        <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current stroke-2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold tracking-widest text-accent-text uppercase">Catalogue</p>
+        <h1 class="mt-1 text-4xl font-bold tracking-tight sm:text-5xl">All laptops</h1>
+      </div>
+      <p id="result-count" class="rounded-full bg-ink px-4 py-1.5 font-mono text-sm font-semibold text-page" aria-live="polite">Loading laptops…</p>
+    </div>
+
+    <div class="mt-8 grid items-start gap-8 lg:grid-cols-[17rem_1fr]">
+      <form id="filters" role="search" aria-label="Filter laptops" class="rounded-2xl border border-line bg-surface p-5 lg:sticky lg:top-24">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
+          <div class="sm:col-span-2 lg:col-span-1">
+            <label for="search" class="text-sm font-bold">Search</label>
+            <input id="search" type="search" autocomplete="off" placeholder="Name or brand, e.g. Lenovo" class="field mt-1.5">
+          </div>
+          <div>
+            <label for="category" class="text-sm font-bold">Category</label>
+            <select id="category" class="field mt-1.5">
+              <option value="all">All categories</option>
+            </select>
+          </div>
+          <div>
+            <label for="sort" class="text-sm font-bold">Sort by</label>
+            <select id="sort" class="field mt-1.5">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="battery-desc">Battery: longest first</option>
+              <option value="battery-asc">Battery: shortest first</option>
+              <option value="weight-asc">Weight: lightest first</option>
+              <option value="weight-desc">Weight: heaviest first</option>
+            </select>
+          </div>
+          <div>
+            <div class="flex items-center justify-between"><label for="max-price" class="text-sm font-bold">Max price</label> <output id="max-price-value" for="max-price" class="font-mono text-xs text-accent-text">–</output></div>
+            <input id="max-price" type="range" min="0" max="0" step="500" value="0" class="mt-3 w-full accent-accent-text">
+          </div>
+          <div>
+            <label for="min-ram" class="text-sm font-bold">Minimum RAM</label>
+            <select id="min-ram" class="field mt-1.5">
+              <option value="0">Any RAM</option>
+              <option value="8">8 GB or more</option>
+              <option value="16">16 GB or more</option>
+              <option value="24">24 GB or more</option>
+              <option value="32">32 GB or more</option>
+            </select>
+          </div>
+          <div>
+            <div class="flex items-center justify-between"><label for="min-battery" class="text-sm font-bold">Min battery</label> <output id="min-battery-value" for="min-battery" class="font-mono text-xs text-accent-text">Any</output></div>
+            <input id="min-battery" type="range" min="0" max="20" step="1" value="0" class="mt-3 w-full accent-accent-text">
+          </div>
+          <button type="reset" class="btn-ghost w-full sm:col-span-2 lg:col-span-1">Reset filters</button>
+        </div>
+      </form>
+
+      <div id="laptop-grid" class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"></div>
+    </div>
+  </main>
+
+
+  <footer class="mt-16 border-t border-line">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p><span class="font-bold text-ink">Laptop<span class="text-accent-text">Finder</span></span> · SW302 Assignment 2 · Mido Sherif</p>
+      <p>Prices are approximate, in Egyptian pounds (EGP).</p>
+    </div>
+  </footer>
+
+  <script type="module" src="src/js/laptops.js"></script>
+</body>
+</html>
