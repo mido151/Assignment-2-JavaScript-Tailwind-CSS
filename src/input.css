@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@custom-variant performance (&:where([data-theme="performance"], [data-theme="performance"] *));
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("../assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-saver-page: #f4f6ea;
+  --color-saver-surface: #ffffff;
+  --color-saver-raised: #e8eed4;
+  --color-saver-ink: #141611;
+  --color-saver-muted: #4d5446;
+  --color-saver-line: #d3dbc0;
+  --color-saver-accent: #c2ef3c;
+  --color-saver-accent-text: #3b680c;
+  --color-saver-heart: #c4371f;
+
+  --color-perf-page: #0a0b09;
+  --color-perf-surface: #141612;
+  --color-perf-raised: #1f231b;
+  --color-perf-ink: #f2f5e8;
+  --color-perf-muted: #a8af9b;
+  --color-perf-line: #2f3429;
+  --color-perf-accent: #d4ff3a;
+  --color-perf-accent-text: #d4ff3a;
+  --color-perf-heart: #ff7a66;
+
+  --color-page: var(--color-saver-page);
+  --color-surface: var(--color-saver-surface);
+  --color-raised: var(--color-saver-raised);
+  --color-ink: var(--color-saver-ink);
+  --color-muted: var(--color-saver-muted);
+  --color-line: var(--color-saver-line);
+  --color-accent: var(--color-saver-accent);
+  --color-accent-ink: var(--color-saver-ink);
+  --color-accent-text: var(--color-saver-accent-text);
+  --color-heart: var(--color-saver-heart);
+
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  [data-theme="performance"] {
+    --color-page: var(--color-perf-page);
+    --color-surface: var(--color-perf-surface);
+    --color-raised: var(--color-perf-raised);
+    --color-ink: var(--color-perf-ink);
+    --color-muted: var(--color-perf-muted);
+    --color-line: var(--color-perf-line);
+    --color-accent: var(--color-perf-accent);
+    --color-accent-ink: var(--color-perf-page);
+    --color-accent-text: var(--color-perf-accent-text);
+    --color-heart: var(--color-perf-heart);
+  }
+}
+
+@layer components {
+  .laptop-card {
+    @apply flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition duration-200 hover:-translate-y-1 hover:border-accent-text hover:shadow-xl hover:shadow-ink/10 focus-within:border-accent-text motion-reduce:transition-none motion-reduce:hover:translate-y-0;
+  }
+
+  .btn-action {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-accent px-5 py-2.5 text-sm font-bold text-accent-ink transition duration-200 hover:-translate-y-0.5 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-line bg-surface px-5 py-2.5 text-sm font-bold text-ink transition duration-200 hover:-translate-y-0.5 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 motion-reduce:transition-none;
+  }
+
+  .field {
+    @apply w-full rounded-xl border-line bg-surface text-sm text-ink transition placeholder:text-muted focus:border-accent-text focus:ring-2 focus:ring-accent-text;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md bg-raised px-2 py-0.5 text-xs font-semibold text-muted;
+  }
+
+  .nav-link {
+    @apply rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap text-muted lg:px-4 transition hover:bg-raised hover:text-ink focus-visible:outline-3 focus-visible:outline-accent-text aria-[current=page]:bg-ink aria-[current=page]:text-page;
+  }
+}
