@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-theme="saver" class="scheme-light performance:scheme-dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home · Student Laptop Finder</title>
+  <meta name="description" content="Find, compare and save student laptops by price, battery life and weight.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="dist/output.css">
+  <script src="src/js/theme-boot.js"></script>
+</head>
+<body class="flex min-h-screen flex-col bg-page font-sans text-ink antialiased transition-colors duration-300">
+  <a href="#main" class="btn-action sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50">Skip to content</a>
+
+  <header class="sticky top-0 z-40 border-b border-line bg-page/90 backdrop-blur">
+    <div class="relative mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
+      <a href="index.html" class="mr-auto flex items-center gap-2 rounded-md text-lg font-bold tracking-tight focus-visible:outline-3 focus-visible:outline-accent-text">
+        <span class="grid size-9 place-items-center rounded-lg bg-accent text-accent-ink">
+          <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current stroke-2" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path stroke-linecap="round" d="M2 19h20"/></svg>
+        </span>
+        <span>Laptop<span class="text-accent-text">Finder</span></span>
+      </a>
+
+      <nav id="site-nav" aria-label="Main" class="absolute inset-x-0 top-full hidden flex-col gap-1 border-b border-line bg-page p-4 md:static md:flex md:flex-row md:border-0 md:bg-transparent md:p-0">
+        <a class="nav-link" href="index.html" aria-current="page">Home</a>
+        <a class="nav-link" href="laptops.html">Laptops</a>
+        <a class="nav-link" href="favorites.html">Favorites <span data-fav-count class="ml-1 rounded-full bg-heart px-1.5 py-0.5 font-mono text-xs text-page">0</span></a>
+        <a class="nav-link" href="compare.html">Compare</a>
+      </nav>
+
+      <button id="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Performance Mode"
+        class="group inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface p-1 text-sm font-bold transition duration-200 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text lg:pr-3">
+        <span class="relative h-7 w-12 rounded-full bg-raised">
+          <span class="absolute top-1 left-1 grid size-5 place-items-center rounded-full bg-accent-text text-page transition-transform duration-300 group-aria-checked:translate-x-5 motion-reduce:transition-none">
+            <svg viewBox="0 0 24 24" class="size-3.5 fill-current group-aria-checked:hidden" aria-hidden="true"><path d="M17 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-3 15h-4v-2h4Zm0-4h-4v-2h4Z"/></svg>
+            <svg viewBox="0 0 24 24" class="hidden size-3.5 fill-current group-aria-checked:block" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg>
+          </span>
+        </span>
+        <span id="theme-label" class="hidden whitespace-nowrap lg:inline">Battery Saver</span>
+      </button>
+
+      <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"
+        class="grid size-10 place-items-center rounded-full border-2 border-line bg-surface transition hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text md:hidden">
+        <svg viewBox="0 0 24 24" class="size-5 fill-none stroke-current stroke-2" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="flex-1">
+    <section class="relative isolate" aria-labelledby="hero-title">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(var(--color-line)_1.3px,transparent_1.3px)] bg-size-[22px_22px] mask-[linear-gradient(to_bottom,black_30%,transparent)]"></div>
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-10 pb-6 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:pt-16">
+        <div>
+          <p class="inline-flex items-center gap-2 rounded-full border-2 border-line bg-surface px-3 py-1 text-xs font-bold tracking-widest uppercase">
+            <span class="size-2 animate-pulse rounded-full bg-accent-text motion-reduce:animate-none"></span> Built for students
+          </p>
+          <h1 id="hero-title" class="mt-5 text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl">
+            Find a laptop that <span class="box-decoration-clone rounded-xl bg-accent px-2 text-accent-ink">lasts your semester.</span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-muted">
+            Search and filter student laptops by price, battery life and weight. Save the ones you like, then compare up to four side by side.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="laptops.html" class="btn-action">Browse laptops <span aria-hidden="true">→</span></a>
+            <a href="compare.html" class="btn-ghost">Compare favorites</a>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-lg lg:max-w-none">
+          <p aria-hidden="true" class="absolute -top-6 right-0 z-10 grid size-24 rotate-12 place-items-center rounded-full bg-heart p-3 text-center text-xs leading-tight font-bold text-page shadow-lg transition duration-300 hover:rotate-0 motion-reduce:transition-none sm:size-28 sm:text-sm">
+            Real specs, prices in EGP
+          </p>
+          <div class="px-[5%]">
+            <div class="rounded-t-3xl border-x-[10px] border-t-[10px] border-ink bg-perf-page p-4 shadow-2xl shadow-ink/20 sm:p-6">
+              <div class="flex items-center gap-1.5" aria-hidden="true">
+                <span class="size-2.5 rounded-full bg-perf-heart"></span>
+                <span class="size-2.5 rounded-full bg-perf-accent"></span>
+                <span class="size-2.5 rounded-full bg-perf-muted"></span>
+                <span class="ml-3 font-mono text-xs text-perf-muted">stats.live</span>
+              </div>
+              <h2 class="mt-4 font-mono text-sm text-perf-accent">$ laptop-finder --stats</h2>
+              <dl id="stats" class="mt-4 grid grid-cols-2 gap-2 font-mono sm:gap-3" aria-busy="true">
+                <div class="rounded-xl border border-perf-line p-3">
+                  <dt class="text-xs text-perf-muted">laptops</dt>
+                  <dd class="mt-1 text-xl font-bold text-perf-ink sm:text-2xl" data-stat="count"><span class="block h-8 w-12 animate-pulse rounded bg-perf-line"></span></dd>
+                </div>
+                <div class="rounded-xl border border-perf-line p-3">
+                  <dt class="text-xs text-perf-muted">lowest price</dt>
+                  <dd class="mt-1 text-xl font-bold text-perf-ink sm:text-2xl" data-stat="lowest"><span class="block h-8 w-24 animate-pulse rounded bg-perf-line"></span></dd>
+                </div>
+                <div class="rounded-xl border border-perf-line p-3">
+                  <dt class="text-xs text-perf-muted">saved favorites</dt>
+                  <dd class="mt-1 text-xl font-bold text-perf-heart sm:text-2xl" data-stat="favorites"><span class="block h-8 w-10 animate-pulse rounded bg-perf-line"></span></dd>
+                </div>
+                <div class="rounded-xl border border-perf-line p-3">
+                  <dt class="text-xs text-perf-muted">avg battery</dt>
+                  <dd class="mt-1 text-xl font-bold text-perf-ink sm:text-2xl" data-stat="battery"><span class="block h-8 w-16 animate-pulse rounded bg-perf-line"></span></dd>
+                </div>
+              </dl>
+              <div id="battery-bar" class="mt-4 flex gap-1" aria-hidden="true"></div>
+              <p class="mt-4 font-mono text-xs text-perf-muted">ready. flip the switch at the top for Performance Mode<span class="animate-pulse text-perf-accent motion-reduce:animate-none">_</span></p>
+            </div>
+          </div>
+          <div class="h-4 rounded-t-sm rounded-b-2xl bg-ink"></div>
+          <div class="mx-auto h-1.5 w-1/3 rounded-b-lg bg-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="overflow-hidden py-10" aria-label="Brands in the catalogue">
+      <div class="-mx-8 -rotate-2 border-y-2 border-ink bg-accent py-3 text-accent-ink">
+        <div id="brand-track" class="flex min-h-8 w-max animate-marquee text-2xl font-bold tracking-tight uppercase motion-reduce:animate-none sm:text-3xl"></div>
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <section class="mt-6" aria-labelledby="missions-title">
+        <h2 id="missions-title" class="text-2xl font-bold tracking-tight sm:text-3xl">Pick by mission</h2>
+        <p class="mt-1 text-muted">Start from what you need the laptop for. Each tile opens the catalogue already filtered.</p>
+        <div id="missions" class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+          <div class="h-44 animate-pulse rounded-2xl bg-raised"></div>
+          <div class="h-44 animate-pulse rounded-2xl bg-raised"></div>
+          <div class="h-44 animate-pulse rounded-2xl bg-raised"></div>
+          <div class="h-44 animate-pulse rounded-2xl bg-raised"></div>
+          <div class="h-44 animate-pulse rounded-2xl bg-raised"></div>
+        </div>
+      </section>
+
+      <section class="mt-16 lg:mt-24" aria-labelledby="pages-title">
+        <h2 id="pages-title" class="text-2xl font-bold tracking-tight sm:text-3xl">Where to next</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <a href="laptops.html" class="group flex flex-col rounded-2xl border-2 border-line bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text motion-reduce:transition-none">
+            <span class="font-mono text-5xl font-bold text-muted transition group-hover:text-accent-text" aria-hidden="true">01</span>
+            <span class="mt-3 text-lg font-bold">Laptop catalogue</span>
+            <span class="mt-1 text-sm text-muted">Search, filter by price, RAM and battery, and sort the full list.</span>
+            <span class="mt-4 text-sm font-bold group-hover:underline">Open catalogue <span aria-hidden="true">→</span></span>
+          </a>
+          <a id="details-link" href="details.html" class="group flex flex-col rounded-2xl border-2 border-line bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text motion-reduce:transition-none">
+            <span class="font-mono text-5xl font-bold text-muted transition group-hover:text-accent-text" aria-hidden="true">02</span>
+            <span class="mt-3 text-lg font-bold">Laptop details</span>
+            <span class="mt-1 text-sm text-muted">Full specifications of one laptop. Today: <span id="details-name" class="font-semibold text-ink">the battery champion</span>.</span>
+            <span class="mt-4 text-sm font-bold group-hover:underline">See details <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="favorites.html" class="group flex flex-col rounded-2xl border-2 border-line bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text motion-reduce:transition-none">
+            <span class="font-mono text-5xl font-bold text-muted transition group-hover:text-accent-text" aria-hidden="true">03</span>
+            <span class="mt-3 text-lg font-bold">Your favorites</span>
+            <span class="mt-1 text-sm text-muted">Every laptop you saved, with the total and average price.</span>
+            <span class="mt-4 text-sm font-bold group-hover:underline">Open favorites <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="compare.html" class="group flex flex-col rounded-2xl border-2 border-line bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent-text motion-reduce:transition-none">
+            <span class="font-mono text-5xl font-bold text-muted transition group-hover:text-accent-text" aria-hidden="true">04</span>
+            <span class="mt-3 text-lg font-bold">Compare</span>
+            <span class="mt-1 text-sm text-muted">Put two to four favorites side by side and spot the best values.</span>
+            <span class="mt-4 text-sm font-bold group-hover:underline">Start comparing <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="mt-16 lg:mt-24" aria-labelledby="picks-title">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 id="picks-title" class="text-2xl font-bold tracking-tight sm:text-3xl">Smart picks</h2>
+            <p class="mt-1 text-muted">Calculated from the catalogue every time the page loads.</p>
+          </div>
+          <a href="laptops.html" class="btn-ghost">See all laptops</a>
+        </div>
+        <div id="picks" class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="mt-16 border-t border-line">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p><span class="font-bold text-ink">Laptop<span class="text-accent-text">Finder</span></span> · SW302 Assignment 2 · Mido Sherif</p>
+      <p>Prices are approximate, in Egyptian pounds (EGP).</p>
+    </div>
+  </footer>
+
+  <script type="module" src="src/js/home.js"></script>
+</body>
+</html>
